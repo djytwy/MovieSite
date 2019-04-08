@@ -5,15 +5,24 @@ const movie = require('./../models/movie')
 
 class Api {
 
-    static async test(ctx) {
-        movie.create({
-            title:'twy',
-            content_text:'this is content_text 测试！！',
-            images_path: 'http://img.haofang007.com/9f9bab92724a438ad88ef8fb077a562212c7613c.jpg',
-            video_url: 'http://img.haofang007.com/ef92d86054f6e2c2200224f61c4c9be5b2700b34.jpg',
-            content_type: '测试类型'
-        })
-        ctx.response.body = 'success !'
+    // 获取电影数据的接口
+    static async get_movie_data(ctx) {
+        const query_params = ctx.request.query
+        console.log(query_params)
+        if(query_params.q === "title") {
+            const title_data = await movie.findAll({
+                attributes: ['title']
+            })
+            ctx.response.body = title_data
+        } else if (query_params.q === "content" && query_params.title) {
+            const content_data = await movie.findAll({
+                where: {
+                    title: query_params.title
+                }
+            })
+            ctx.response.body = content_data
+        } else
+            ctx.response.body = {status:'error', message:'please confirm you query params !'}
     }
     // 登录
     static async login(ctx) {

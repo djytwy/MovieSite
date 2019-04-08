@@ -10,4 +10,4 @@ module.exports = router
     .post('/find_user',Api.find_user)
     .get('/login_out',TokenOprions.check_token,Api.login_out)
     .get('/init',TokenOprions.check_token,Api.init)
-    .get('/test', Api.test)
+    .get('/get_movie_data', Api.get_movie_data)
