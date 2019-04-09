@@ -26,7 +26,7 @@ const router = new Router({
     {
       path:'/movie',
       name:'movie',
-      component: movie
+      component: movie,
     },
     {
       path:'/',

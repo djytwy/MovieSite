@@ -5,7 +5,7 @@ import store from './store.js'
 import axios from 'axios'
 
 import ELEMENT from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ELEMENT)
 
