@@ -1,11 +1,11 @@
 <template>
-    <el-container style="height: 500px; border: 1px solid #eee">
+    <el-container style="height: 1080px; border: 1px solid #eee">
         <el-aside width="400px" style="background-color: rgb(238, 241, 246)">
             <el-menu :default-openeds="['1']" @open="getMovieContent" router>
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>电影</template>
                 <el-menu-item-group>
-                    <el-menu-item v-for="movie in movie_data" :key="movie.id" :index="'/movie/' + movie.title" @select="mytest">{{ movie.title }}</el-menu-item>
+                    <el-menu-item v-for="movie in movie_data" :key="movie.id" :index="'/' + movie.title" @select="mytest">{{ movie.title }}</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
@@ -29,14 +29,10 @@
 </template>
 
 <script>
-// import movieArticle from '../components/movieArticle'
 import api from '../axios.js'
 
 export default {
     name:'movie',
-    // components:{
-    //     'movie-article':movieArticle
-    // },
     data(){
         return {
             type:"电影",

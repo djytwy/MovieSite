@@ -1,8 +1,8 @@
 <template>
     <div id="movie-article">
-        <p v-for=" each in content" :key="each" >{{ each }}</p>
-        <div v-for=" each in images_list" :key="each+'2'">
-            <img :src="each" alt="">
+        <p v-for=" each in content" :key="each.id" >{{ each.data }}</p>
+        <div v-for=" each in images_list" :key="each.id+'20'">
+            <img :src="each.data" alt="">
         </div>
     </div>
 </template>
@@ -27,12 +27,26 @@ export default {
             return this.$route.params.title
         },
         content: function() {
-            const content = this.$store.state.movieContent.content_text
-            return content.split('。')
+            if (this.$store.state.movieContent) {
+                const content = this.$store.state.movieContent.content_text.split('。')
+                let data = []
+                for (let each in content) {
+                    data.push({id:each,data:content[each]})
+                }
+                return data
+            } else 
+                return '暂无内容'
         },
         images_list: function() {
-            const images_list = this.$store.state.movieContent.images_path
-            return images_list.split('|')
+            if (this.$store.state.movieContent) {
+                const images_list = this.$store.state.movieContent.images_path.split('|')
+                let data = []
+                for (let each in images_list) {
+                    data.push({id:each,data:images_list[each]})
+                }
+                return data
+            } else
+                return '暂无图片'
         }
     },
     methods: {
@@ -40,21 +54,20 @@ export default {
             api.get_movie('content', this.$route.params.title)
             .then( response => {
                 this.$store.dispatch('MovieContent', response.data[0]);
-                // this.$store.state.movieContent = response.data[0]
             })
             .catch( err => {
                 console.log(err)
             })
         },
 
-        // 服务器的带宽比较垃圾，延时400毫秒，保证数据的稳定
+        // 服务器的带宽比较垃圾，延时50毫秒，保证数据的稳定
         getMovieTime: function() {
             const self = this
             return new Promise( resolve => {
                 setTimeout(() => {
                     self.getMovie()
                     resolve(true)
-                }, 400)
+                }, 50)
             })
         }
     },
