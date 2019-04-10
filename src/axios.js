@@ -65,11 +65,18 @@ class User {
         return instance.post('/api/find_user',data)
     }
 
-    static login_out(token){
+    static login_out(token) {
         return instance.get('/api/login_out',{
             params: {
                 token:token
             }
+        })
+    }
+
+    static get_movie(q,data=null) {
+        const query_params = data ? {q:q, title:data} : {q:q}
+        return instance.get('/api/get_movie_data',{
+            params: query_params
         })
     }
 }

@@ -20,6 +20,9 @@ const Login = resolve => {
 const movie = resolve => require(['./views/movie'], resolve)
 const test = resolve => require(['./components/test'], resolve)
 
+const content = resolve => require(['./components/movieArticle'], resolve)
+
+
 const router = new Router({
   mode:'history',
   routes:[
@@ -27,6 +30,11 @@ const router = new Router({
       path:'/movie',
       name:'movie',
       component: movie,
+      children:[{
+          path:':title',
+          component: content
+        }
+      ]
     },
     {
       path:'/',

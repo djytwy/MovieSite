@@ -12,5 +12,8 @@ export default {
     },
     UserName({ commit }, data){
         commit(types.USERNAME, data);
+    },
+    MovieContent({ commit }, data){
+        commit(types.MOVIECONTENT, data)
     }
 }

@@ -11,11 +11,12 @@ class Api {
         console.log(query_params)
         if(query_params.q === "title") {
             const title_data = await movie.findAll({
-                attributes: ['title']
+                attributes: ['id','title']
             })
             ctx.response.body = title_data
         } else if (query_params.q === "content" && query_params.title) {
             const content_data = await movie.findAll({
+                attributes:['id','content_text','images_path','video_url'],
                 where: {
                     title: query_params.title
                 }

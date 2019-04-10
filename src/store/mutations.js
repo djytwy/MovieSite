@@ -13,6 +13,9 @@ const mutations = {
         //把用户名存起来
         state.username = data;
         window.localStorage.setItem('username', data);
+    },
+    [types.MOVIECONTENT]: (state, data) => {
+        state.movieContent = data;
     }
 };
 
