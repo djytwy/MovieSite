@@ -1,6 +1,6 @@
 <template>
     <div id="movie-article">
-        <p v-for=" each in content" :key="each.id" >{{ each.data }}</p>
+        <p v-for=" each in content" :key="each.id" style="">{{ each.data }}</p>
         <div v-for=" each in images_list" :key="each.id+'20'">
             <img :src="each.data" alt="">
         </div>
@@ -12,14 +12,9 @@ import api from '../axios.js'
 
 export default {
     name:'movieArticle',
-    data: function() {
-        return {
-            movieContent:null
-        }
-    },
     watch: {
         title: async function() {
-            await this.getMovieTime()
+            await this.getMovie()
         }
     },
     computed: {
@@ -58,21 +53,10 @@ export default {
             .catch( err => {
                 console.log(err)
             })
-        },
-
-        // 服务器的带宽比较垃圾，延时50毫秒，保证数据的稳定
-        getMovieTime: function() {
-            const self = this
-            return new Promise( resolve => {
-                setTimeout(() => {
-                    self.getMovie()
-                    resolve(true)
-                }, 50)
-            })
         }
     },
     mounted: async function () {
-        await this.getMovieTime()
+        await this.getMovie()
     }
 }
 </script>
