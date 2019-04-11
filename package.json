@@ -1,12 +1,13 @@
 {
-  "name": "vue-koa",
+  "name": "movie_site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "app": "node ./server/app.js"
+    "app": "node ./server/app.js",
+    "pro_app": "pm2 start ./pm2.json && pm2 web"
   },
   "dependencies": {
     "axios": "^0.18.0",
