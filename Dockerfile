@@ -13,5 +13,5 @@ RUN npm install \
 VOLUME [ "/usr/src/app/logs" ]
 
 EXPOSE 3001 9615
-CMD ["npm","run","pro_app"]
+CMD ["npm","run","pm2_docker_app"]
     
